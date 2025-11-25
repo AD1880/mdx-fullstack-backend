@@ -1,0 +1,99 @@
+ [
+  {
+    "subject": "Mathematics",
+    "location": "Hendon",
+    "price": 25,
+    "spaces": 5,
+    "icon": "fa-calculator",
+    "description": "Advanced mathematics tutoring for all levels"
+  },
+  {
+    "subject": "English Literature", 
+    "location": "Colindale",
+    "price": 20,
+    "spaces": 5,
+    "icon": "fa-book",
+    "description": "Improve your writing and reading comprehension"
+  },
+  {
+    "subject": "Science",
+    "location": "Brent Cross",
+    "price": 30,
+    "spaces": 5,
+    "icon": "fa-flask",
+    "description": "Hands-on science experiments and learning"
+  },
+  {
+    "subject": "History",
+    "location": "Golders Green", 
+    "price": 18,
+    "spaces": 5,
+    "icon": "fa-landmark",
+    "description": "Explore historical events and civilizations"
+  },
+  {
+    "subject": "Art & Design",
+    "location": "Hendon",
+    "price": 22,
+    "spaces": 5,
+    "icon": "fa-palette",
+    "description": "Creative arts and design fundamentals"
+  },
+  {
+    "subject": "Music",
+    "location": "Colindale",
+    "price": 28,
+    "spaces": 5,
+    "icon": "fa-music",
+    "description": "Learn to play instruments and music theory"
+  },
+  {
+    "subject": "Computer Science",
+    "location": "Brent Cross",
+    "price": 35,
+    "spaces": 5,
+    "icon": "fa-laptop-code",
+    "description": "Programming and computer fundamentals"
+  },
+  {
+    "subject": "Physics",
+    "location": "Golders Green",
+    "price": 32,
+    "spaces": 5,
+    "icon": "fa-atom",
+    "description": "Understanding the laws of physics"
+  },
+  {
+    "subject": "Chemistry",
+    "location": "Hendon",
+    "price": 30,
+    "spaces": 5,
+    "icon": "fa-vial",
+    "description": "Chemical reactions and laboratory skills"
+  },
+  {
+    "subject": "Geography",
+    "location": "Colindale", 
+    "price": 16,
+    "spaces": 5,
+    "icon": "fa-globe",
+    "descript": "World geography and environmental studies"
+  },
+  {
+    "subject": "Spanish",
+    "location": "Brent Cross",
+    "price": 24,
+    "spaces": 5,
+    "icon": "fa-language",
+    "description": "Learn Spanish language and culture"
+  },
+  {
+    "subject": "Drama",
+    "location": "Golders Green",
+    "price": 20,
+    "spaces": 5,
+    "icon": "fa-theater-masks",
+    "description": "Acting, improvisation, and theater skills"
+  }
+]
+
