@@ -361,57 +361,9 @@ app.get('/orders', async (req, res) => {
   }
 })
 
-// ROUTE 6: GET / - Basic route to test if server is running
-app.get('/', (req, res) => {
-  res.json({
-    message: '🎓 After School Classes API is running!',
-    version: '1.0.0',
-    endpoints: [
-      'GET /lessons - Get all lessons',
-      'GET /search?query=term - Search lessons',
-      'POST /orders - Create new order',
-      'PUT /lessons/:id - Update lesson',
-      'GET /orders - Get all orders'
-    ],
-    timestamp: new Date().toISOString()
-  })
-})
 
-// ERROR HANDLING MIDDLEWARE (catches any unhandled errors)
-app.use((error, req, res, next) => {
-  console.error('💥 Unhandled error:', error)
-  res.status(500).json({
-    error: 'Internal server error',
-    message: 'Something went wrong on the server'
-  })
-})
 
-// HANDLE ROUTE NOT FOUND (when someone requests a route that doesn't exist)
-app.use('*', (req, res) => {
-  console.log(`❓ Route not found: ${req.method} ${req.originalUrl}`)
-  res.status(404).json({
-    error: 'Route not found',
-    message: `The route ${req.method} ${req.originalUrl} does not exist`,
-    availableRoutes: [
-      'GET /',
-      'GET /lessons',
-      'GET /search',
-      'POST /orders',
-      'PUT /lessons/:id',
-      'GET /orders'
-    ]
-  })
-})
 
-// GRACEFUL SHUTDOWN (properly close database connection when server stops)
-process.on('SIGINT', async () => {
-  console.log('\n🛑 Shutting down server...')
-  try {
-    await client.close()
-    console.log('📁 Database connection closed')
-    process.exit(0)
-  } catch (error) {
-    console.error('Error during shutdown:', error)
-    process.exit(1)
-  }
-})
+
+
+
