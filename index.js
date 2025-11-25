@@ -360,10 +360,3 @@ app.get('/orders', async (req, res) => {
     })
   }
 })
-
-
-
-
-
-
-
