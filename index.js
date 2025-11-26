@@ -1,31 +1,24 @@
 
-const express = require('express')        // Web framework for creating API
-const cors = require('cors')              // Allows frontend to connect to backend
+const express = require('express')        
+const cors = require('cors')      
 const { MongoClient, ObjectId } = require('mongodb')  // Database connection tools
 
-// Create our web application
 const app = express()
 
-// MIDDLEWARE SETUP (these run for every request)
-
-// Enable CORS so Vue.js frontend can talk to this backend
 app.use(cors())
 
-// Allow our app to understand JSON data from requests
+
 app.use(express.json())
 
-// Allow our app to understand form data from requests  
+
 app.use(express.urlencoded({ extended: true }))
 
-// LOGGER MIDDLEWARE (Required by coursework - logs all requests)
+
 app.use((req, res, next) => {
-  // Get current date and time for the log
   const timestamp = new Date().toISOString()
   
-  // Log the request method, URL, and timestamp
   console.log(`[${timestamp}] ${req.method} request to ${req.url}`)
-  
-  // Continue to the next middleware or route
+
   next()
 })
 
