@@ -1,4 +1,4 @@
-// Import all the libraries we need
+
 const express = require('express')        // Web framework for creating API
 const cors = require('cors')              // Allows frontend to connect to backend
 const { MongoClient, ObjectId } = require('mongodb')  // Database connection tools
@@ -25,39 +25,13 @@ app.use((req, res, next) => {
   // Log the request method, URL, and timestamp
   console.log(`[${timestamp}] ${req.method} request to ${req.url}`)
   
-  // If there's request body data, log it too
-  if (req.body && Object.keys(req.body).length > 0) {
-    console.log('Request body:', req.body)
-  }
-  
   // Continue to the next middleware or route
   next()
 })
 
-// STATIC FILE MIDDLEWARE (Required by coursework - serves lesson images)
-app.use('/images', express.static('public/images', {
-  // This function runs when a file is requested but doesn't exist
-  fallthrough: false
-}))
-
-// Handle errors when image files don't exist
-app.use('/images', (err, req, res, next) => {
-  if (err) {
-    console.error(`Image not found: ${req.url}`)
-    res.status(404).json({ 
-      error: 'Image not found',
-      message: `The requested image ${req.url} does not exist`
-    })
-  } else {
-    next()
-  }
-})
-
 // Start the server on port 3000 (or port provided by hosting service)
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+app.listen(PORT)
 
 // DATABASE CONNECTION SETUP
 
