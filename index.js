@@ -49,25 +49,22 @@ async function connectToDatabase() {
   }
 }
 
-// Start database connection
+
 connectToDatabase()
 
-// API ROUTES (these handle requests from the frontend)
 
-// ROUTE 1: GET /lessons - Returns all lessons (Required by coursework)
 app.get('/lessons', async (req, res) => {
   try {
     console.log('📚 Fetching all lessons from database...')
     
-    // Get the lessons collection from database
     const lessonsCollection = db.collection('lessons')
     
-    // Find all lessons and convert to array
+    
     const lessons = await lessonsCollection.find({}).toArray()
     
     console.log(`Found ${lessons.length} lessons`)
     
-    // Send lessons back as JSON with success status
+    
     res.status(200).json(lessons)
     
   } catch (error) {
@@ -79,38 +76,36 @@ app.get('/lessons', async (req, res) => {
   }
 })
 
-// ROUTE 2: GET /search - Search lessons (Challenge component)
+
 app.get('/search', async (req, res) => {
   try {
-    // Get the search term from URL query parameter
+ 
     const searchTerm = req.query.query || ''
     
     console.log(`🔍 Searching for lessons with term: "${searchTerm}"`)
     
-    // If no search term provided, return all lessons
+    
     if (!searchTerm.trim()) {
       const lessonsCollection = db.collection('lessons')
       const allLessons = await lessonsCollection.find({}).toArray()
       return res.status(200).json(allLessons)
     }
     
-    // Get the lessons collection
+    
     const lessonsCollection = db.collection('lessons')
     
-    // Search in multiple fields using MongoDB $or operator
-    // This searches in subject, location, and converts price/spaces to string for searching
+    
     const searchResults = await lessonsCollection.find({
       $or: [
-        { subject: { $regex: searchTerm, $options: 'i' } },      // Search in subject (case insensitive)
-        { location: { $regex: searchTerm, $options: 'i' } },     // Search in location
-        { $expr: { $regexMatch: { input: { $toString: "$price" }, regex: searchTerm, options: 'i' } } }, // Search in price
-        { $expr: { $regexMatch: { input: { $toString: "$spaces" }, regex: searchTerm, options: 'i' } } }  // Search in spaces
+        { subject: { $regex: searchTerm, $options: 'i' } },
+        { location: { $regex: searchTerm, $options: 'i' } },     
+        { $expr: { $regexMatch: { input: { $toString: "$price" }, regex: searchTerm, options: 'i' } } }, 
+        { $expr: { $regexMatch: { input: { $toString: "$spaces" }, regex: searchTerm, options: 'i' } } } 
       ]
     }).toArray()
     
     console.log(`Found ${searchResults.length} lessons matching "${searchTerm}"`)
     
-    // Return search results
     res.status(200).json(searchResults)
     
   } catch (error) {
@@ -122,7 +117,6 @@ app.get('/search', async (req, res) => {
   }
 })
 
-// ROUTE 3: POST /orders - Save a new order (Required by coursework)
 app.post('/orders', async (req, res) => {
   try {
     console.log('📝 Creating new order...')
