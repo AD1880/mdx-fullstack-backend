@@ -22,13 +22,11 @@ app.use((req, res, next) => {
   next()
 })
 
-// Start the server on port 3000 (or port provided by hosting service)
+
 const PORT = process.env.PORT || 3000
 app.listen(PORT)
 
-// DATABASE CONNECTION SETUP
 
-// Connect to MongoDB Atlas (cloud database)
 const mongoUrl = "mongodb://localhost:27017" || 'mongodb+srv://your-username:your-password@cluster0.mongodb.net/'
 const client = new MongoClient(mongoUrl)
 
@@ -46,7 +44,7 @@ async function connectToDatabase() {
     
     // Test the connection by getting collection names
     const collections = await db.listCollections().toArray()
-    console.log('Available collections:', collections.map(c => c.name))
+    console.log('Available collections: ', collections.join("\n"))
     
   } catch (error) {
     console.error('❌ Failed to connect to MongoDB:', error)
