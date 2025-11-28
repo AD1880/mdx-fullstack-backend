@@ -151,10 +151,9 @@ app.post('/orders', async (req, res) => {
     
     console.log('✅ Order saved successfully with ID:', result.insertedId)
     
-    // Update lesson spaces after successful order
+
     await updateLessonSpaces(orderData.lessons)
-    
-    // Return success response
+
     res.status(201).json({
       success: true,
       message: 'Order created successfully',
@@ -171,18 +170,14 @@ app.post('/orders', async (req, res) => {
   }
 })
 
-// ROUTE 4: PUT /lessons/:id - Update lesson spaces (Required by coursework)
 app.put('/lessons/:id', async (req, res) => {
   try {
-    // Get lesson ID from URL parameter
     const lessonId = req.params.id
     
-    // Get update data from request body
     const updateData = req.body
     
     console.log(`📝 Updating lesson ${lessonId}:`, updateData)
     
-    // Validate that we have data to update
     if (!updateData || Object.keys(updateData).length === 0) {
       return res.status(400).json({
         error: 'No update data provided',
@@ -190,16 +185,14 @@ app.put('/lessons/:id', async (req, res) => {
       })
     }
     
-    // Get the lessons collection
     const lessonsCollection = db.collection('lessons')
     
-    // Update the lesson by ID
+    
     const result = await lessonsCollection.updateOne(
-      { _id: new ObjectId(lessonId) },  // Find lesson by ID
-      { $set: updateData }              // Update with new data
+      { _id: new ObjectId(lessonId) },
+      { $set: updateData }              
     )
     
-    // Check if lesson was found and updated
     if (result.matchedCount === 0) {
       return res.status(404).json({
         error: 'Lesson not found',
@@ -216,7 +209,6 @@ app.put('/lessons/:id', async (req, res) => {
     
     console.log('✅ Lesson updated successfully')
     
-    // Return success response
     res.status(200).json({
       success: true,
       message: 'Lesson updated successfully',
@@ -226,7 +218,6 @@ app.put('/lessons/:id', async (req, res) => {
   } catch (error) {
     console.error('Error updating lesson:', error)
     
-    // Handle invalid ObjectId error
     if (error.name === 'BSONTypeError') {
       return res.status(400).json({
         error: 'Invalid lesson ID format',
