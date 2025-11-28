@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT)
 
 
-const mongoUrl = "mongodb://localhost:27017" || 'mongodb+srv://your-username:your-password@cluster0.mongodb.net/'
+const mongoUrl = "mongodb+srv://root:root@cluster0.v8em8ls.mongodb.net/?appName=Cluster0"
 const client = new MongoClient(mongoUrl)
 
 
