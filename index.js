@@ -30,25 +30,22 @@ app.listen(PORT)
 const mongoUrl = "mongodb://localhost:27017" || 'mongodb+srv://your-username:your-password@cluster0.mongodb.net/'
 const client = new MongoClient(mongoUrl)
 
-// Variable to store our database connection
+
 let db
 
-// Connect to the database when the server starts
 async function connectToDatabase() {
   try {
     await client.connect()
     console.log('✅ Successfully connected to MongoDB Atlas')
     
-    // Get reference to our database (replace 'afterschool' with your database name)
     db = client.db('after_school_classes')
     
-    // Test the connection by getting collection names
     const collections = await db.listCollections().toArray()
     console.log('Available collections: ', collections.join("\n"))
     
   } catch (error) {
     console.error('❌ Failed to connect to MongoDB:', error)
-    process.exit(1) // Stop the server if database connection fails
+    process.exit(1) 
   }
 }
 
