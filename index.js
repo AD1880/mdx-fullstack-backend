@@ -5,6 +5,11 @@ const { MongoClient, ObjectId } = require('mongodb')  // Database connection too
 
 const app = express()
 
+app.get("/", (req, res) => {
+  res.send("🎉 After School Backend is running!");
+});
+
+
 app.use(cors())
 
 
